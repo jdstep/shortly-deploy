@@ -6,6 +6,8 @@ var app = require('../server-config.js');
 var db = require('../app/config');
 var User = require('../app/models/user');
 var Link = require('../app/models/link');
+var Users = require('../app/collections/users');
+var Links = require('../app/collections/links');
 
 /////////////////////////////////////////////////////
 // NOTE: these tests are designed for mongo!
@@ -20,9 +22,9 @@ xdescribe('', function() {
       .end(function(err, res) {
 
         // Delete objects from db so they can be created later for the test
-        Link.remove({url : 'http://www.roflzoo.com/'}).exec();
-        User.remove({username : 'Savannah'}).exec();
-        User.remove({username : 'Phillip'}).exec();
+        Links.remove({url : 'http://www.roflzoo.com/'}).exec();
+        Users.remove({username : 'Savannah'}).exec();
+        Users.remove({username : 'Phillip'}).exec();
 
         done();
       });
@@ -80,7 +82,7 @@ xdescribe('', function() {
             Link.findOne({'url' : 'http://www.roflzoo.com/'})
               .exec(function(err,link){
                 if(err) console.log(err);
-                expect(link.title).to.equal('Rofl Zoo - Daily funny animal pictures');
+                expect(link.title).to.equal('Funny pictures of animals, funny dog pictures');
               });
           })
           .end(done);
@@ -93,7 +95,7 @@ xdescribe('', function() {
       beforeEach(function(done) {
         link = new Link({
           url: 'http://www.roflzoo.com/',
-          title: 'Rofl Zoo - Daily funny animal pictures',
+          title: 'Funny pictures of animals, funny dog pictures',
           base_url: 'http://127.0.0.1:4568',
           visits: 0
         })
