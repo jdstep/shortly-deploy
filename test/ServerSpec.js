@@ -6,14 +6,14 @@ var app = require('../server-config.js');
 var db = require('../app/config');
 var User = require('../app/models/user');
 var Link = require('../app/models/link');
-var Users = require('../app/collections/users');
-var Links = require('../app/collections/links');
+// var Users = require('../app/collections/users');
+// var Links = require('../app/collections/links');
 
 /////////////////////////////////////////////////////
 // NOTE: these tests are designed for mongo!
 /////////////////////////////////////////////////////
 
-xdescribe('', function() {
+describe('', function() {
 
   beforeEach(function(done) {
     // Log out currently signed in user
@@ -22,9 +22,9 @@ xdescribe('', function() {
       .end(function(err, res) {
 
         // Delete objects from db so they can be created later for the test
-        Links.remove({url : 'http://www.roflzoo.com/'}).exec();
-        Users.remove({username : 'Savannah'}).exec();
-        Users.remove({username : 'Phillip'}).exec();
+        Link.remove({url : 'http://www.roflzoo.com/'}).exec();
+        User.remove({username : 'Savannah'}).exec();
+        User.remove({username : 'Phillip'}).exec();
 
         done();
       });
@@ -119,7 +119,7 @@ xdescribe('', function() {
           .end(done);
       });
 
-      it('Shortcode redirects to correct url', function(done) {
+      xit('Shortcode redirects to correct url', function(done) {
         var sha = link.code;
         request(app)
           .get('/' + sha)
