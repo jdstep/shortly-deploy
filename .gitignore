@@ -3,12 +3,12 @@
 .LSOverride
 azure.err
 iisnode.yml
+node_modules
+db/*.sqlite
+public/dist
 
 # Icon must ends with two \r.
 Icon
-
-
-
 
 # Floobits
 .floo
